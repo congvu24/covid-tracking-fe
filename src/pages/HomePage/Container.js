@@ -11,7 +11,7 @@ import { all } from "redux-saga/effects";
 
 class Container extends React.Component {
   componentDidMount() {
-    const { actions, allCountry, overView } = this.props;
+    const { actions, allCountry, overView, isLoading } = this.props;
     if (isEmpty(overView)) {
       actions.getOverView();
     }
@@ -19,7 +19,11 @@ class Container extends React.Component {
     actions.getNews();
   }
   render() {
-    return <HomePage {...this.props} />;
+    if (isLoading) {
+      return null;
+    } else {
+      return <HomePage {...this.props} />;
+    }
   }
 }
 
