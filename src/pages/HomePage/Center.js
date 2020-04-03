@@ -16,14 +16,14 @@ export default class Center extends Component {
   //     zoom: 3
   //   }
   // };
-  setViewport = viewport => {
+  setViewport = (viewport) => {
     this.setState({
       ...this.state,
       viewport: {
         ...this.state.viewport,
         long: viewport.longitude,
-        lat: viewport.lat
-      }
+        lat: viewport.lat,
+      },
     });
   };
   // componentDidMount() {
@@ -99,18 +99,18 @@ function Map({ allCountry, theme }) {
     height: 850,
     latitude: 10.944297,
     longitude: 107.391024,
-    zoom: 3
+    zoom: 3,
   });
   const [showPopup, setShowPopup] = useState(false);
   const [position, setPosition] = useState({
     longitude: 0,
-    latitude: 0
+    latitude: 0,
   });
   const [dataPopup, setDataPopup] = useState({
     country: "",
     confirmed: "",
     deaths: "",
-    recovered: ""
+    recovered: "",
   });
   return (
     <ReactMapGL
@@ -124,7 +124,7 @@ function Map({ allCountry, theme }) {
       mapboxApiAccessToken={MAPBOX_TOKEN}
     >
       {allCountry &&
-        allCountry.map(data => {
+        allCountry.map((data) => {
           if (!_.isEmpty(data)) {
             return (
               <Marker
@@ -145,13 +145,13 @@ function Map({ allCountry, theme }) {
                   onMouseOver={() => {
                     setPosition({
                       latitude: parseFloat(data.lat),
-                      longitude: parseFloat(data.long)
+                      longitude: parseFloat(data.long),
                     });
                     setDataPopup({
                       country: data.countryName,
                       confirmed: data.confirmed,
                       deaths: data.deaths ? data.deaths : 0,
-                      recovered: data.confirmed - data.deaths
+                      recovered: data.recovered,
                     });
                     setShowPopup(!showPopup);
                   }}
@@ -200,19 +200,19 @@ function Status({ confirmed, recovered, deaths }) {
       <div
         className="line--red"
         style={{
-          width: percentActive + "%"
+          width: percentActive + "%",
         }}
       ></div>
       <div
         className="line--green"
         style={{
-          width: percentRecovered + "%"
+          width: percentRecovered + "%",
         }}
       ></div>
       <div
         className="line--gray"
         style={{
-          width: percentDeath + "%"
+          width: percentDeath + "%",
         }}
       ></div>
     </div>
