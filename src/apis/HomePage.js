@@ -1,7 +1,7 @@
 import fetch from "node-fetch";
 import axios from "axios";
 
-const API_BASE = "http://localhost:8080";
+const API_BASE = "https://covid-tracking-be.herokuapp.com";
 
 export const getOverView = async () => {
   const data = {
@@ -10,14 +10,14 @@ export const getOverView = async () => {
       global: {
         cases: "961589",
         deaths: "49165",
-        recovered: "203176"
+        recovered: "203176",
       },
       vietnam: {
         cases: "227",
         deaths: "0",
-        recovered: "75"
-      }
-    }
+        recovered: "75",
+      },
+    },
   };
   return data.data;
 };
@@ -32,7 +32,7 @@ export const getNews = async () => {
     let res = await fetch(
       `https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fvietnamnews.vn%2Frss%2Fsociety.rss`,
       {
-        headers: { "Content-Type": "application/json" }
+        headers: { "Content-Type": "application/json" },
       }
     );
     let data = await res.json();
@@ -44,10 +44,10 @@ export const getNews = async () => {
   }
 };
 
-const callApi = async endPoint => {
+const callApi = async (endPoint) => {
   try {
     let res = await fetch(`${API_BASE}${endPoint}`, {
-      headers: { "Content-Type": "application/json" }
+      headers: { "Content-Type": "application/json" },
     });
     let data = await res.json();
     if (data.status) {
