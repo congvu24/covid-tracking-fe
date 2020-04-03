@@ -19,6 +19,7 @@ class Container extends React.Component {
     actions.getNews();
   }
   render() {
+    const { isLoading } = this.props;
     if (isLoading) {
       return null;
     } else {
